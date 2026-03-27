@@ -145,31 +145,7 @@
 
 /* ── AGYA Luxury Utilities ── */
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.glass-card-light {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, #D6B98C 0%, #E6CFA7 50%, #8B7441 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero-gradient {
-  background: linear-gradient(135deg, #F5EFE6 0%, #E6CFA7 50%, #EFE7DC 100%);
-}
-
-/* Grain texture overlay */
+/* Grain texture overlay — subtle warmth */
 .grain-overlay::after {
   content: "";
   position: fixed;
@@ -182,85 +158,18 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.3;
+  opacity: 0.25;
 }
 
-/* Animated gradient backgrounds */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* Glass card — used on dashboard, quiz results */
+.glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-12px) rotate(1deg); }
-  66% { transform: translateY(-6px) rotate(-0.5deg); }
-}
-
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px rgba(214, 185, 140, 0.3), 0 0 60px rgba(214, 185, 140, 0.1); }
-  50% { box-shadow: 0 0 40px rgba(214, 185, 140, 0.5), 0 0 80px rgba(214, 185, 140, 0.2); }
-}
-
-@keyframes progress-ring {
-  0% { stroke-dashoffset: 283; }
-}
-
-@keyframes silk-flow {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-@keyframes subtle-drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(10px, -10px) scale(1.02); }
-  50% { transform: translate(-5px, 5px) scale(1); }
-  75% { transform: translate(-10px, -5px) scale(1.01); }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float-slow 8s ease-in-out infinite;
-}
-
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-.animate-shimmer {
-  background-size: 200% 100%;
-  animation: shimmer 3s linear infinite;
-}
-
-.animate-glow-pulse {
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-
-.animate-silk {
-  background-size: 400% 400%;
-  animation: silk-flow 15s ease infinite;
-}
-
-.animate-subtle-drift {
-  animation: subtle-drift 20s ease-in-out infinite;
-}
-
-/* Gold accent button glow */
+/* Gold accent button glow — used on scan page */
 .btn-gold-glow {
   position: relative;
   overflow: hidden;
@@ -284,7 +193,7 @@
 .section-divider {
   width: 60px;
   height: 1px;
-  background: linear-gradient(to right, transparent, #D6B98C, transparent);
+  background: linear-gradient(to right, transparent, #8B7441, transparent);
 }
 
 /* Luxury scrollbar */
@@ -295,9 +204,9 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(214, 185, 140, 0.3);
+  background: rgba(139, 116, 65, 0.2);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(214, 185, 140, 0.5);
+  background: rgba(139, 116, 65, 0.35);
 }

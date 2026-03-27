@@ -32,9 +32,7 @@ export default function Navbar() {
       className={`fixed top-0 w-full z-50 transition-all duration-700 ${
         scrolled
           ? "bg-cream/90 backdrop-blur-2xl shadow-[0_1px_0_rgba(0,0,0,0.04)]"
-          : isHome
-          ? "bg-transparent"
-          : "bg-cream/90 backdrop-blur-2xl"
+          : "bg-transparent"
       }`}
     >
       <nav className="flex justify-between items-center px-6 md:px-12 lg:px-20 py-5 w-full max-w-[1440px] mx-auto">
@@ -42,9 +40,7 @@ export default function Navbar() {
         <div className="flex gap-8 items-center">
           <Link
             href="/"
-            className={`font-heading text-xl tracking-[0.35em] transition-colors duration-500 ${
-              !scrolled && isHome ? "text-gold-light" : "text-gold-dark"
-            }`}
+            className="font-heading text-xl tracking-[0.35em] text-gold-dark transition-colors duration-500"
           >
             AGYA
           </Link>
@@ -57,11 +53,7 @@ export default function Navbar() {
                 href={link.href}
                 className={`tracking-[0.15em] uppercase text-[10px] font-medium transition-all duration-500 ${
                   pathname === link.href
-                    ? !scrolled && isHome
-                      ? "text-gold-light border-b border-gold-light/40 pb-1"
-                      : "text-gold-dark border-b border-gold-dark/40 pb-1"
-                    : !scrolled && isHome
-                    ? "text-white/50 hover:text-gold-light"
+                    ? "text-gold-dark border-b border-gold-dark/40 pb-1"
                     : "text-text-secondary hover:text-gold-dark"
                 }`}
               >
@@ -75,11 +67,7 @@ export default function Navbar() {
         <div className="flex items-center gap-5">
           <Link
             href="/cart"
-            className={`relative hover:scale-110 transition-all duration-300 ${
-              !scrolled && isHome
-                ? "text-white/60 hover:text-gold-light"
-                : "text-text-secondary hover:text-gold-dark"
-            }`}
+            className="relative text-text-secondary hover:text-gold-dark hover:scale-110 transition-all duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,11 +93,7 @@ export default function Navbar() {
 
           <Link
             href="/dashboard"
-            className={`hover:scale-110 transition-all duration-300 ${
-              !scrolled && isHome
-                ? "text-white/60 hover:text-gold-light"
-                : "text-text-secondary hover:text-gold-dark"
-            }`}
+            className="text-text-secondary hover:text-gold-dark hover:scale-110 transition-all duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -130,11 +114,7 @@ export default function Navbar() {
           {/* Mobile menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
-              className={`md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md transition-colors ${
-                !scrolled && isHome
-                  ? "text-white/60 hover:text-gold-light"
-                  : "text-text-secondary hover:text-gold-dark"
-              }`}
+              className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md text-text-secondary hover:text-gold-dark transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
