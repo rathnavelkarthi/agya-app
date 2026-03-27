@@ -1,0 +1,266 @@
+[     669ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:2431
+[    2190ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    2190ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    2292ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    2292ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    2904ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    2905ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    2961ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    2961ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    3609ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    3610ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    3610ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/?_rsc=wnywt:0
+[    3759ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    3759ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:3272
+[    3760ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/?_rsc=wnywt:0
+[    3790ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[    4162ms] Error: ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error
+
+
+    at <unknown> (Error: ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10)
+    at Object.getCompilationErrors (file://C:\Users\rathn\OneDrive\Pictures\Agya\agya-app\node_modules\next\dist\server\dev\hot-reloader-turbopack.js:1189:59)
+    at DevBundlerService.getCompilationError (file://C:\Users\rathn\OneDrive\Pictures\Agya\agya-app\node_modules\next\dist\server\lib\dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file://C:\Users\rathn\OneDrive\Pictures\Agya\agya-app\node_modules\next\dist\server\dev\next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file://C:\Users\rathn\OneDrive\Pictures\Agya\agya-app\node_modules\next\dist\server\dev\next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file://C:\Users\rathn\OneDrive\Pictures\Agya\agya-app\node_modules\next\dist\server\base-server.js:1745:26)
+[    4168ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[    4169ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[    4228ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[    4229ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[    4285ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[    4285ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[    8431ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:10
+You're importing a module that depends on `useEffect` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |          ^^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[    8431ms] [ERROR] ./OneDrive/Pictures/Agya/agya-app/src/app/shop/page.tsx:4:21
+You're importing a module that depends on `useState` into a React Server Component module. This API is only available in Client Components. To fix, mark the file (or its parent) with the `"use client"` directive.
+    Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+  2 | import { useCartStore } from "@/lib/store";
+  3 | import { createClient } from "@/lib/supabase/client";
+> 4 | import { useEffect, useState } from "react";
+    |                     ^^^^^^^^
+  5 |
+  6 | // Static product catalog (in production, fetch from Supabase)
+  7 | const products = [
+
+Ecmascript file had an error @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_0_krbpw._.js:1945
+[   17615ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:2431
+[   47131ms] [WARNING] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior @ http://localhost:3000/_next/static/chunks/0sp~_next_dist_10yyp24._.js:2431
