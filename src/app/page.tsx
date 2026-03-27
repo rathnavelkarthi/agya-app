@@ -1,14 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useInView,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 /* ─── Data ─── */
@@ -17,7 +10,7 @@ const products = [
   {
     name: "Cellular Elixir No. 4",
     type: "Regenerative Oil",
-    price: "₹185",
+    price: "185",
     benefit:
       "A bio-adaptive oil that recalibrates your skin's lipid barrier overnight. Infused with squalane, bakuchiol, and our proprietary peptide complex.",
     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBQSSvKYA8Twt8fHCDARIOFw83OBGLWMs7A7Oj9aNvddFwO9IX0yWXg7ABtJtITL2UTusuU3s-PtI9rUyauHMFiMoOTb54hhRFz1YaDEfcKXloYsuayMnejGI87CO7vigLmjJOXHgURoOIMzadlJbAXPWTGcZzrgLLwYI14QOibHfzApbZmW8O2i7uhRr3_tcbkg8jPZeo1W2nxuexqo3CpBCnAOy0STsN69x-lL0BE-Fqz4_eoRiRMGzgN5siQBGQ4S86MkuHvK5M",
@@ -25,7 +18,7 @@ const products = [
   {
     name: "Molecular Repair Balm",
     type: "Intense Hydration",
-    price: "₹210",
+    price: "210",
     benefit:
       "Deep-penetrating ceramide complex that restores the moisture matrix at a cellular level. For skin that feels reborn by morning.",
     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCIMQtgPLBvTwzgT6ZcQCqrTmDVCaxsWum3pVtwNoGHhUOnx95ysm-88X7Qgpa1godXHbBoMi-U2cy9HtPQ8qogxr3IOlQDfHr8uTJuGDiaR_afrG-REkoOz8cDdcjfsMUFZvgmxsjwQB7YTEkJDzxKuuDWj4hV3cwWhykoT7eQABahyTRh8oD5gXGD7VRXlCajy5okPI0fx7_BlHdnuMBCCsU0Ol0BtzE1LBoq2YAXlprLc0wX6kxXZa0VqGyDjd1Fsdrp8U-2uyg",
@@ -33,7 +26,7 @@ const products = [
   {
     name: "The DNA Serum",
     type: "Personalized Base",
-    price: "₹245",
+    price: "245",
     benefit:
       "Your unique formula. Engineered from 40+ skin variables and recalibrated each season. The pinnacle of personalized skincare.",
     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCoycCn4dZIixtE4Lj_8f24JFT-zQBUqEBkPIob27mAdwalESwKPgFrEuDNUYoovpjKWg6URTKug6Ed_RACnhYMNNxIQA85GihshXmYMw99JqOPK6Dc2w45lpGCMSPUkts4_xoyDQgPbQTBENDW0BEW7iwIhF2-K53P9IOVsxdmmU8oHt7RwTuggoScDaXbCDrN6HCfQrwu4R6d-z6fjupy4ko4VB4mkOoXFriLTOIjXMLf8000735mgKjP7KjjfIX9krxdcRWztzs",
@@ -143,50 +136,6 @@ function SkinScoreRing({ score }: { score: number }) {
   );
 }
 
-/* ─── Parallax Product Image ─── */
-
-function ParallaxProduct({ src, alt }: { src: string; alt: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 150, damping: 20 });
-  const springY = useSpring(y, { stiffness: 150, damping: 20 });
-
-  function handleMouse(e: React.MouseEvent) {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    const px = (e.clientX - rect.left - rect.width / 2) / 20;
-    const py = (e.clientY - rect.top - rect.height / 2) / 20;
-    x.set(px);
-    y.set(py);
-  }
-
-  function handleLeave() {
-    x.set(0);
-    y.set(0);
-  }
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={handleLeave}
-      style={{ x: springX, y: springY }}
-      className="relative w-72 h-[460px] lg:w-80 lg:h-[520px]"
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-gold/5 to-transparent rounded-full blur-3xl scale-75 animate-float-slow" />
-      <motion.img
-        className="w-full h-full object-contain drop-shadow-[0_40px_80px_rgba(214,185,140,0.25)] animate-float"
-        src={src}
-        alt={alt}
-        initial={{ opacity: 0, scale: 0.85, rotate: -2 }}
-        animate={{ opacity: 1, scale: 1, rotate: -1 }}
-        transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
-      />
-    </motion.div>
-  );
-}
-
 /* ─── Animated Counter ─── */
 
 function AnimatedStat({
@@ -241,136 +190,108 @@ function AnimatedStat({
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HOMEPAGE — LUXURY CINEMATIC MOBILE-FIRST
+   HOMEPAGE — QUIET LUXURY · WARM · CALM
    ═══════════════════════════════════════════════════════════ */
 
 export default function HomePage() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-
   return (
     <>
-      {/* ═══ 1. HERO — FULL SCREEN CINEMATIC ═══ */}
-      <section
-        ref={heroRef}
-        className="relative h-[100dvh] flex flex-col justify-end overflow-hidden"
-      >
-        {/* Background with parallax zoom */}
-        <motion.div
-          className="absolute inset-0 z-0"
-          style={{ scale: heroScale }}
-        >
-          <img
-            className="w-full h-full object-cover"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOZmkRaiUOOHZvhoqec8HnZvwi6YmXJ-8UgRHcBh-tMbDY9GhFmsjPTTjySzjnhNqrSCCpaVfHzG_dl9-0WdSjnvKReUvnIpRf7UjD3VqlLWQX-ws8rHdlSrPpmdORvbz70z_UsTvgR7EhoiBprPj4BFU0zz2OtSsgFAMRRJ3RsCTNWrQc9FlV5efYjsM9ctJ5qVbWj29TvAOdb0bIdfW9VIo6aplD8CM-7ka84U4zACkTAL2kWgFFojIgRY6_uYz3KQhiwI3faNo"
-            alt="Abstract water ripples with gold lighting"
-          />
-          {/* Dark cinematic overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/30" />
-          <div className="absolute inset-0 bg-charcoal/40" />
-          {/* Subtle gold shimmer */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-gold/3 animate-gradient opacity-50" />
-        </motion.div>
+      {/* ═══ 1. HERO — CALM, WARM, EDITORIAL ═══ */}
+      <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-cream via-cream-dark/40 to-cream">
+        {/* Soft warm ambient glow — no harsh gradients */}
+        <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-gold/[0.06] rounded-full blur-[180px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-gold-light/[0.05] rounded-full blur-[150px] pointer-events-none" />
 
-        {/* Hero Content — bottom-aligned for mobile drama */}
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
-          className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 pb-14 md:pb-20"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
-            {/* Left — Copy */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={stagger}
-              className="max-w-2xl"
+        {/* Content — centered vertical flow */}
+        <div className="relative z-10 w-full max-w-2xl mx-auto px-6 md:px-12 pt-28 pb-20 md:pt-36 md:pb-28">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="flex flex-col items-center text-center"
+          >
+            {/* Eyebrow */}
+            <motion.span
+              variants={fadeUp}
+              custom={0}
+              className="text-[9px] md:text-[10px] uppercase tracking-[0.45em] text-text-muted mb-8 md:mb-10 block"
             >
-              <motion.span
-                variants={fadeUp}
-                custom={0}
-                className="text-[9px] md:text-[10px] uppercase tracking-[0.5em] text-gold-light/60 mb-6 md:mb-8 block"
-              >
-                Future of Apothecary
-              </motion.span>
+              Personalized Skincare
+            </motion.span>
 
-              {/* Headline — dramatically large */}
-              <motion.h1
-                variants={fadeUp}
-                custom={0.1}
-                className="mb-6 md:mb-8"
-              >
-                <span className="font-heading text-[3.2rem] leading-[0.95] md:text-7xl lg:text-8xl xl:text-[7rem] font-bold text-white block">
-                  Skin,
-                  <br />
-                  perfected.
-                </span>
-                <span className="font-heading text-2xl md:text-4xl lg:text-5xl font-normal italic text-gold-light/80 leading-[1.3] block mt-3 md:mt-4">
-                  by nature and intelligence.
-                </span>
-              </motion.h1>
+            {/* Headline — elegant, not dramatic */}
+            <motion.h1
+              variants={fadeUp}
+              custom={0.15}
+              className="mb-6 md:mb-8"
+            >
+              <span className="font-heading text-[2.8rem] leading-[1.05] md:text-6xl lg:text-7xl font-medium text-text-primary block">
+                Skin, perfected.
+              </span>
+              <span className="font-heading text-xl md:text-2xl lg:text-3xl font-normal italic text-text-secondary leading-[1.4] block mt-2 md:mt-3">
+                by nature and intelligence.
+              </span>
+            </motion.h1>
 
-              <motion.p
-                variants={fadeUp}
-                custom={0.2}
-                className="text-sm md:text-base text-white/50 leading-relaxed mb-8 md:mb-10 max-w-sm font-light tracking-wide"
-              >
-                Personalized skincare engineered
-                <br className="md:hidden" /> for your unique skin.
-              </motion.p>
+            {/* Subtext — simple, calm */}
+            <motion.p
+              variants={fadeUp}
+              custom={0.3}
+              className="text-base text-text-secondary leading-relaxed mb-10 md:mb-12 max-w-sm"
+            >
+              Personalized skincare crafted for your unique skin.
+            </motion.p>
 
-              {/* CTA — Full width on mobile */}
-              <motion.div
-                variants={fadeUp}
-                custom={0.35}
-                className="space-y-3 md:space-y-0 md:flex md:gap-4"
-              >
-                <Link href="/quiz" className="block w-full md:w-auto">
-                  <motion.button
-                    whileTap={{ scale: 0.98 }}
-                    className="btn-gold-glow w-full md:w-auto h-14 px-10 bg-gradient-to-r from-gold to-gold-light text-charcoal rounded-xl uppercase tracking-[0.2em] text-[11px] font-semibold hover:scale-[1.02] transition-all duration-500 shadow-[0_20px_60px_rgba(214,185,140,0.35)]"
-                  >
-                    Start Your Skin Journey
-                  </motion.button>
-                </Link>
-                <Link href="/shop" className="block w-full md:w-auto">
-                  <motion.button
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full md:w-auto h-14 px-10 border border-white/15 text-white/70 rounded-xl uppercase tracking-[0.2em] text-[11px] font-medium hover:border-gold-light/30 hover:text-gold-light transition-all duration-500 backdrop-blur-sm"
-                  >
-                    Explore Products
-                  </motion.button>
-                </Link>
-              </motion.div>
+            {/* CTAs — soft, refined pills */}
+            <motion.div
+              variants={fadeUp}
+              custom={0.45}
+              className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto"
+            >
+              <Link href="/quiz" className="block w-full sm:w-auto">
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full sm:w-auto h-12 px-8 bg-gold text-charcoal rounded-full text-[11px] uppercase tracking-[0.18em] font-medium hover:bg-gold-dark hover:text-white transition-colors duration-500"
+                >
+                  Start Your Journey
+                </motion.button>
+              </Link>
+              <Link href="/shop" className="block w-full sm:w-auto">
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full sm:w-auto h-12 px-8 border border-text-primary/12 text-text-primary rounded-full text-[11px] uppercase tracking-[0.18em] font-medium hover:border-text-primary/25 transition-colors duration-500"
+                >
+                  Explore Products
+                </motion.button>
+              </Link>
             </motion.div>
+          </motion.div>
 
-            {/* Right — Floating Product (desktop) */}
-            <div className="hidden md:flex justify-center items-end">
-              <ParallaxProduct
+          {/* Product image — soft, below text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
+            className="mt-14 md:mt-20 flex justify-center"
+          >
+            <div className="relative w-56 h-72 md:w-64 md:h-80 lg:w-72 lg:h-96">
+              <img
+                className="w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.06)]"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSKs74w5P1Il4nfq5V6FuPO1M-WAQqAAtCuxaNUUD2BypUeWhliwjCkozSw7093NQ2SHQzzKPjqjjgF6vC36ljjO2xUvLycE0CibAWhk1mfsFK5-CoHv2VdXbkzMaWCSjI1pS11A1J4ahel0NybTSKG0I1-IulbuiS0X0DTS6A3vqvdWShQLtYUTDOWUwyieASPO78TfoYucMU-NA-DXi9ot3qkNy7p6-GU4rxvg0d-40d1o9Q-M_rEcfkOaMPgPyVvyXk4LWdXz8"
-                alt="Luxury frosted glass serum bottle"
+                alt="AGYA signature serum"
               />
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
-        {/* Scroll indicator */}
+        {/* Minimal scroll hint — just a thin line */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 md:hidden"
+          transition={{ delay: 2.5, duration: 1.2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 md:hidden"
         >
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-[1px] h-6 bg-gradient-to-b from-gold-light/40 to-transparent"
-          />
+          <div className="w-[1px] h-8 bg-gradient-to-b from-text-muted/30 to-transparent" />
         </motion.div>
       </section>
 
@@ -694,8 +615,11 @@ export default function HomePage() {
                   </p>
 
                   {/* PRICE — visually dominant */}
-                  <div className="mb-8">
-                    <span className="font-heading text-3xl md:text-4xl font-semibold text-text-primary tracking-wide">
+                  <div className="mb-8 flex items-baseline gap-1">
+                    <span className="font-sans text-xl md:text-2xl text-gold-dark font-medium">
+                      ₹
+                    </span>
+                    <span className="font-sans text-3xl md:text-4xl font-semibold text-text-primary">
                       {p.price}
                     </span>
                   </div>

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 
 // Initialize Gemini with API Key
-const apiKey = process.env.GEMINI_API_KEY || "";
+const apiKey = process.env.GEMINI_API_KEY || "AIzaSyCEbufrGwUdS-DhY-QkTjXVWQFVmiQtFgg";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // Specialized System Instruction for Gemini
