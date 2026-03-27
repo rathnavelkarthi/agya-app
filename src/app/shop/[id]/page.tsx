@@ -99,7 +99,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="aspect-square bg-cream-dark rounded-3xl flex items-center justify-center p-16 sticky top-24"
+            className="aspect-square bg-cream-dark rounded-3xl flex items-center justify-center p-8 md:p-16 md:sticky md:top-24"
           >
             <img
               src={productImage}

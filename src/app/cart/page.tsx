@@ -61,62 +61,60 @@ export default function CartPage() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="flex gap-6 items-center p-6 bg-card rounded-2xl border border-border/20"
+              className="flex gap-4 items-start p-5 bg-card rounded-2xl border border-border/20"
             >
-              {/* Image placeholder */}
-              <div className="w-20 h-20 bg-cream-dark rounded-xl flex items-center justify-center shrink-0">
+              {/* Image */}
+              <div className="w-16 h-16 bg-cream-dark rounded-xl flex items-center justify-center shrink-0">
                 {item.image ? (
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-full h-full object-contain p-2 rounded-xl"
+                    className="w-full h-full object-contain p-1 rounded-xl"
                   />
                 ) : (
                   <span className="text-2xl">🧴</span>
                 )}
               </div>
 
+              {/* Details */}
               <div className="flex-1 min-w-0">
-                <h4 className="font-medium truncate">{item.name}</h4>
-                {item.isCustom && (
-                  <span className="text-[10px] text-gold uppercase tracking-widest">
-                    Custom Formula
-                  </span>
-                )}
-                <p className="text-gold mt-1">₹{item.price.toFixed(2)}</p>
-              </div>
+                <div className="flex justify-between items-start gap-2">
+                  <div className="min-w-0">
+                    <h4 className="font-medium text-sm leading-tight">{item.name}</h4>
+                    {item.isCustom && (
+                      <span className="text-[10px] text-gold uppercase tracking-widest">Custom Formula</span>
+                    )}
+                  </div>
+                  <button
+                    onClick={() => removeItem(item.id)}
+                    className="text-muted-foreground hover:text-destructive transition-colors shrink-0 text-xs mt-0.5"
+                  >
+                    ✕
+                  </button>
+                </div>
 
-              {/* Quantity */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                  className="w-8 h-8 rounded-full border border-border/30 flex items-center justify-center hover:border-gold transition-colors"
-                >
-                  −
-                </button>
-                <span className="w-8 text-center text-sm">{item.quantity}</span>
-                <button
-                  onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                  className="w-8 h-8 rounded-full border border-border/30 flex items-center justify-center hover:border-gold transition-colors"
-                >
-                  +
-                </button>
-              </div>
+                <div className="flex items-center justify-between mt-3">
+                  {/* Quantity Controls */}
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      className="w-7 h-7 rounded-full border border-border/30 flex items-center justify-center hover:border-gold transition-colors text-sm"
+                    >
+                      −
+                    </button>
+                    <span className="w-6 text-center text-sm">{item.quantity}</span>
+                    <button
+                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      className="w-7 h-7 rounded-full border border-border/30 flex items-center justify-center hover:border-gold transition-colors text-sm"
+                    >
+                      +
+                    </button>
+                  </div>
 
-              {/* Subtotal */}
-              <div className="text-right min-w-[80px]">
-                <p className="font-medium">
-                  ₹{(item.price * item.quantity).toFixed(2)}
-                </p>
+                  {/* Total price */}
+                  <span className="font-medium text-sm text-gold">₹{(item.price * item.quantity).toFixed(2)}</span>
+                </div>
               </div>
-
-              {/* Remove */}
-              <button
-                onClick={() => removeItem(item.id)}
-                className="text-muted-foreground hover:text-destructive transition-colors"
-              >
-                ✕
-              </button>
             </motion.div>
           ))}
         </div>
