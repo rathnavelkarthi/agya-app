@@ -52,13 +52,13 @@ const ingredients = [
 /* ─── Animation Variants ─── */
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: (delay: number = 0) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
-      ease: [0.25, 0.46, 0.45, 0.94] as const,
+      duration: 0.9,
+      ease: [0.22, 1, 0.36, 1],
       delay,
     },
   }),
@@ -66,75 +66,9 @@ const fadeUp = {
 
 const stagger = {
   visible: {
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.12 },
   },
 };
-
-/* ─── Scroll Progress Ring ─── */
-
-function SkinScoreRing({ score }: { score: number }) {
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-  const circumference = 2 * Math.PI * 45;
-  const offset = circumference - (score / 100) * circumference;
-
-  return (
-    <div ref={containerRef} className="relative w-44 h-44 mx-auto">
-      <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-        <circle
-          cx="50"
-          cy="50"
-          r="45"
-          fill="none"
-          stroke="rgba(214,185,140,0.1)"
-          strokeWidth="1.5"
-        />
-        <circle
-          cx="50"
-          cy="50"
-          r="45"
-          fill="none"
-          stroke="url(#goldGradientRing)"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeDasharray={circumference}
-          strokeDashoffset={isInView ? offset : circumference}
-          style={{
-            transition:
-              "stroke-dashoffset 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          }}
-        />
-        <defs>
-          <linearGradient
-            id="goldGradientRing"
-            x1="0%"
-            y1="0%"
-            x2="100%"
-            y2="100%"
-          >
-            <stop offset="0%" stopColor="#D6B98C" />
-            <stop offset="50%" stopColor="#E6CFA7" />
-            <stop offset="100%" stopColor="#D6B98C" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <motion.span
-          className="font-heading text-5xl text-gold-light"
-          initial={{ opacity: 0, scale: 0.5 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-        >
-          {isInView ? score : 0}
-        </motion.span>
-        <span className="text-[9px] uppercase tracking-[0.3em] text-gold-light/50 mt-1">
-          skin score
-        </span>
-      </div>
-    </div>
-  );
-}
 
 /* ─── Animated Counter ─── */
 
@@ -173,16 +107,17 @@ function AnimatedStat({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay, ease: "easeOut" }}
       className="text-center"
     >
-      <div className="font-heading text-7xl md:text-8xl text-gradient-gold mb-3">
-        {isInView ? count : 0}%
+      <div className="font-heading text-6xl md:text-7xl text-text-primary mb-2">
+        {isInView ? count : 0}
+        <span className="text-gold-dark">%</span>
       </div>
-      <div className="text-[10px] uppercase tracking-[0.3em] text-text-secondary">
+      <div className="text-[10px] uppercase tracking-[0.3em] text-text-muted">
         {label}
       </div>
     </motion.div>
@@ -190,7 +125,8 @@ function AnimatedStat({
 }
 
 /* ═══════════════════════════════════════════════════════════
-   HOMEPAGE — QUIET LUXURY · WARM · CALM
+   HOMEPAGE — $100K CLASSIC LUXURY E-COMMERCE
+   Aesthetic: Aesop × Byredo × Celine — warm, editorial, calm
    ═══════════════════════════════════════════════════════════ */
 
 export default function HomePage() {
@@ -198,11 +134,11 @@ export default function HomePage() {
     <>
       {/* ═══ 1. HERO — CALM, WARM, EDITORIAL ═══ */}
       <section className="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-cream via-cream-dark/40 to-cream">
-        {/* Soft warm ambient glow — no harsh gradients */}
+        {/* Soft warm ambient glow */}
         <div className="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-gold/[0.06] rounded-full blur-[180px] pointer-events-none" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-gold-light/[0.05] rounded-full blur-[150px] pointer-events-none" />
 
-        {/* Content — centered vertical flow */}
+        {/* Content */}
         <div className="relative z-10 w-full max-w-2xl mx-auto px-6 md:px-12 pt-28 pb-20 md:pt-36 md:pb-28">
           <motion.div
             initial="hidden"
@@ -210,7 +146,6 @@ export default function HomePage() {
             variants={stagger}
             className="flex flex-col items-center text-center"
           >
-            {/* Eyebrow */}
             <motion.span
               variants={fadeUp}
               custom={0}
@@ -219,7 +154,6 @@ export default function HomePage() {
               Personalized Skincare
             </motion.span>
 
-            {/* Headline — elegant, not dramatic */}
             <motion.h1
               variants={fadeUp}
               custom={0.15}
@@ -233,7 +167,6 @@ export default function HomePage() {
               </span>
             </motion.h1>
 
-            {/* Subtext — simple, calm */}
             <motion.p
               variants={fadeUp}
               custom={0.3}
@@ -242,7 +175,6 @@ export default function HomePage() {
               Personalized skincare crafted for your unique skin.
             </motion.p>
 
-            {/* CTAs — soft, refined pills */}
             <motion.div
               variants={fadeUp}
               custom={0.45}
@@ -251,9 +183,9 @@ export default function HomePage() {
               <Link href="/quiz" className="block w-full sm:w-auto">
                 <motion.button
                   whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto h-12 px-8 bg-gold text-charcoal rounded-full text-[11px] uppercase tracking-[0.18em] font-medium hover:bg-gold-dark hover:text-white transition-colors duration-500"
+                  className="w-full sm:w-auto h-12 px-8 bg-text-primary text-cream rounded-full text-[11px] uppercase tracking-[0.18em] font-medium hover:bg-text-primary/85 transition-colors duration-500"
                 >
-                  Start Your Journey
+                  Start Your Ritual
                 </motion.button>
               </Link>
               <Link href="/shop" className="block w-full sm:w-auto">
@@ -267,7 +199,7 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
 
-          {/* Product image — soft, below text */}
+          {/* Product image */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -284,7 +216,7 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Minimal scroll hint — just a thin line */}
+        {/* Scroll hint */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -295,8 +227,8 @@ export default function HomePage() {
         </motion.div>
       </section>
 
-      {/* ═══ 2. TRUST STRIP — Minimal ═══ */}
-      <section className="py-6 md:py-10 bg-charcoal border-y border-white/[0.04]">
+      {/* ═══ 2. TRUST STRIP — Warm, Understated ═══ */}
+      <section className="py-8 md:py-12 bg-cream border-y border-text-primary/[0.04]">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0 }}
@@ -313,7 +245,7 @@ export default function HomePage() {
             ].map((item) => (
               <span
                 key={item}
-                className="text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-white/30 whitespace-nowrap flex-shrink-0"
+                className="text-[9px] md:text-[10px] uppercase tracking-[0.25em] text-text-muted whitespace-nowrap flex-shrink-0"
               >
                 {item}
               </span>
@@ -322,61 +254,64 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 3. SKIN PROFILE — Full Width Feature Block ═══ */}
-      <section className="py-20 md:py-36 bg-charcoal relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/[0.03] rounded-full blur-[150px] pointer-events-none" />
+      {/* ═══ 3. SKIN PROFILE — Warm Editorial ═══ */}
+      <section className="py-24 md:py-40 bg-cream-dark relative overflow-hidden">
+        <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-gold/[0.04] rounded-full blur-[150px] pointer-events-none" />
 
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-14 md:mb-20"
+            className="text-center mb-16 md:mb-24"
           >
-            <span className="text-[9px] uppercase tracking-[0.5em] text-gold-light/40 mb-5 block">
+            <span className="text-[9px] uppercase tracking-[0.5em] text-text-muted mb-5 block">
               Your Unique Blueprint
             </span>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05]">
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl text-text-primary leading-[1.05]">
               Your Skin Profile
             </h2>
           </motion.div>
 
-          {/* Profile — clean, no card borders */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 1, ease: "easeOut" }}
             className="max-w-lg mx-auto"
           >
-            {/* Score Ring */}
-            <div className="mb-14">
-              <SkinScoreRing score={82} />
-              <div className="mt-5 text-center">
-                <div className="text-[9px] uppercase tracking-[0.3em] text-gold-light/40 mb-1">
-                  Skin Health
+            {/* Score — clean typography, no ring */}
+            <div className="mb-16 text-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              >
+                <div className="font-heading text-8xl md:text-9xl text-text-primary leading-none">
+                  82
                 </div>
-                <div className="text-sm text-white/60 font-heading">
-                  Above Average
+                <div className="w-12 h-[1px] bg-gold-dark/30 mx-auto mt-4 mb-3" />
+                <div className="text-[9px] uppercase tracking-[0.3em] text-text-muted">
+                  Skin Score — Above Average
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            {/* Key Details — minimal */}
-            <div className="space-y-6 mb-12">
-              <div className="flex justify-between items-center border-b border-white/[0.06] pb-5">
-                <span className="text-[9px] uppercase tracking-[0.25em] text-gold-light/40">
+            {/* Key Details */}
+            <div className="space-y-0 mb-14">
+              <div className="flex justify-between items-center border-b border-text-primary/[0.06] py-5">
+                <span className="text-[9px] uppercase tracking-[0.25em] text-text-muted">
                   Skin Type
                 </span>
-                <span className="text-white/80 font-heading text-lg">
+                <span className="text-text-primary font-heading text-lg">
                   Combination
                 </span>
               </div>
-              <div className="border-b border-white/[0.06] pb-5">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="text-[9px] uppercase tracking-[0.25em] text-gold-light/40">
+              <div className="border-b border-text-primary/[0.06] py-5">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-[9px] uppercase tracking-[0.25em] text-text-muted">
                     Key Concerns
                   </span>
                 </div>
@@ -384,28 +319,28 @@ export default function HomePage() {
                   {["Dehydration", "Fine Lines", "Uneven Tone"].map((c) => (
                     <span
                       key={c}
-                      className="px-3 py-1.5 rounded-full text-[9px] uppercase tracking-[0.15em] bg-gold/[0.08] text-gold-light/70 border border-gold/[0.1]"
+                      className="px-4 py-2 rounded-full text-[9px] uppercase tracking-[0.15em] bg-white/60 text-text-secondary border border-text-primary/[0.06]"
                     >
                       {c}
                     </span>
                   ))}
                 </div>
               </div>
-              <div className="flex justify-between items-start">
-                <span className="text-[9px] uppercase tracking-[0.25em] text-gold-light/40">
+              <div className="flex justify-between items-start py-5">
+                <span className="text-[9px] uppercase tracking-[0.25em] text-text-muted">
                   Recommended
                 </span>
-                <span className="text-white/50 text-sm text-right max-w-[200px] leading-relaxed">
+                <span className="text-text-secondary text-sm text-right max-w-[200px] leading-relaxed">
                   Hyaluronic Acid, Niacinamide, Retinol
                 </span>
               </div>
             </div>
 
-            {/* CTA — Full width */}
+            {/* CTA */}
             <Link href="/quiz" className="block">
               <motion.button
                 whileTap={{ scale: 0.98 }}
-                className="btn-gold-glow w-full h-14 bg-gradient-to-r from-gold to-gold-light text-charcoal rounded-xl uppercase tracking-[0.2em] text-[11px] font-semibold transition-all duration-500 shadow-[0_20px_60px_rgba(214,185,140,0.2)]"
+                className="w-full h-14 bg-text-primary text-cream rounded-full uppercase tracking-[0.2em] text-[11px] font-medium hover:bg-text-primary/85 transition-colors duration-500"
               >
                 Unlock Your Skin Profile
               </motion.button>
@@ -414,26 +349,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 4. PERSONALIZATION — Emotional Story ═══ */}
-      <section className="py-20 md:py-36 bg-cream relative overflow-hidden">
+      {/* ═══ 4. PERSONALIZATION — Editorial Split ═══ */}
+      <section className="py-24 md:py-40 bg-cream relative overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
             {/* Copy */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-[9px] uppercase tracking-[0.5em] text-gold-dark/60 mb-6 block">
+              <span className="text-[9px] uppercase tracking-[0.5em] text-text-muted mb-6 block">
                 AI-Powered Precision
               </span>
               <h2 className="font-heading text-[2.5rem] leading-[1.05] md:text-5xl lg:text-6xl mb-6 text-text-primary">
                 Not skincare.
                 <br />
-                <span className="italic text-gradient-gold">
-                  Your skincare.
-                </span>
+                <span className="italic text-gold-dark">Your skincare.</span>
               </h2>
               <p className="text-text-secondary mb-10 leading-relaxed text-base max-w-md">
                 Using proprietary AI skin-mapping, we analyze over 40 variables
@@ -443,7 +376,7 @@ export default function HomePage() {
               <Link href="/quiz" className="block w-full md:w-auto">
                 <motion.button
                   whileTap={{ scale: 0.98 }}
-                  className="w-full md:w-auto h-14 px-10 bg-text-primary text-cream rounded-xl uppercase tracking-[0.2em] text-[11px] font-semibold hover:bg-gold-dark hover:text-white transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.1)]"
+                  className="w-full md:w-auto h-12 px-10 bg-text-primary text-cream rounded-full uppercase tracking-[0.2em] text-[11px] font-medium hover:bg-text-primary/85 transition-colors duration-500"
                 >
                   Take Skin Analysis
                 </motion.button>
@@ -452,22 +385,26 @@ export default function HomePage() {
 
             {/* Interactive Mock */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
-              className="bg-white rounded-2xl p-6 md:p-10 border border-[rgba(0,0,0,0.06)] shadow-[0_30px_60px_rgba(0,0,0,0.06)] relative overflow-hidden"
+              transition={{
+                duration: 0.9,
+                delay: 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="bg-white rounded-2xl p-6 md:p-10 border border-text-primary/[0.05] relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full blur-[50px] -mr-16 -mt-16" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gold/[0.04] rounded-full blur-[50px] -mr-16 -mt-16" />
               <div className="relative z-10">
                 <div className="flex justify-between items-center mb-6">
-                  <span className="text-[9px] tracking-[0.3em] uppercase text-gold-dark/60">
+                  <span className="text-[9px] tracking-[0.3em] uppercase text-text-muted">
                     Step 01 / Analysis
                   </span>
                   <div className="flex gap-1.5">
-                    <div className="w-6 h-[2px] bg-gold rounded-full" />
-                    <div className="w-6 h-[2px] bg-[rgba(0,0,0,0.08)] rounded-full" />
-                    <div className="w-6 h-[2px] bg-[rgba(0,0,0,0.08)] rounded-full" />
+                    <div className="w-6 h-[2px] bg-text-primary rounded-full" />
+                    <div className="w-6 h-[2px] bg-text-primary/[0.08] rounded-full" />
+                    <div className="w-6 h-[2px] bg-text-primary/[0.08] rounded-full" />
                   </div>
                 </div>
 
@@ -485,15 +422,13 @@ export default function HomePage() {
                       key={opt}
                       className={`w-full text-left px-5 py-4 rounded-xl border text-sm flex justify-between items-center transition-all duration-300 ${
                         i === 1
-                          ? "border-gold/40 bg-gold/[0.06] shadow-[0_0_30px_rgba(214,185,140,0.08)]"
-                          : "border-[rgba(0,0,0,0.06)] bg-cream/50 hover:border-gold/20"
+                          ? "border-gold-dark/30 bg-gold/[0.04]"
+                          : "border-text-primary/[0.05] bg-cream/50 hover:border-text-primary/[0.12]"
                       }`}
                     >
                       <span
                         className={
-                          i === 1
-                            ? "text-text-primary"
-                            : "text-text-secondary"
+                          i === 1 ? "text-text-primary" : "text-text-secondary"
                         }
                       >
                         {opt}
@@ -531,17 +466,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 5. PRODUCT SHOWCASE — Scroll Story ═══ */}
+      {/* ═══ 5. PRODUCT SHOWCASE — Clean Editorial Grid ═══ */}
       <section className="bg-cream-dark overflow-hidden">
-        {/* Section header */}
-        <div className="px-6 md:px-12 lg:px-20 pt-20 pb-10 md:pt-36 md:pb-16 max-w-[1440px] mx-auto">
+        <div className="px-6 md:px-12 lg:px-20 pt-24 pb-10 md:pt-40 md:pb-16 max-w-[1440px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-[9px] uppercase tracking-[0.5em] text-gold-dark/50 mb-4 block">
+            <span className="text-[9px] uppercase tracking-[0.5em] text-text-muted mb-4 block">
               The Collection
             </span>
             <div className="flex justify-between items-end">
@@ -551,7 +485,7 @@ export default function HomePage() {
               </h2>
               <Link
                 href="/shop"
-                className="hidden md:block text-[10px] uppercase tracking-[0.2em] text-gold-dark border-b border-gold-dark/20 pb-1 hover:border-gold-dark transition-colors duration-300"
+                className="hidden md:block text-[10px] uppercase tracking-[0.2em] text-text-secondary border-b border-text-primary/15 pb-1 hover:text-text-primary hover:border-text-primary/30 transition-all duration-300"
               >
                 View All
               </Link>
@@ -559,7 +493,6 @@ export default function HomePage() {
           </motion.div>
         </div>
 
-        {/* Products — full-width storytelling blocks */}
         {products.map((p, i) => (
           <motion.div
             key={p.name}
@@ -567,23 +500,23 @@ export default function HomePage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className={`${i !== products.length - 1 ? "border-b border-[rgba(0,0,0,0.06)]" : ""}`}
+            className={`${i !== products.length - 1 ? "border-b border-text-primary/[0.05]" : ""}`}
           >
             <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center py-16 md:py-24">
-                {/* Image — Large */}
+                {/* Image */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.1 }}
+                  transition={{ duration: 0.8, delay: 0.1 }}
                   className={`${i % 2 === 1 ? "md:order-2" : ""}`}
                 >
                   <Link href="/shop" className="block group">
-                    <div className="relative aspect-[3/4] bg-white rounded-2xl flex items-center justify-center p-10 md:p-16 overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.04)]">
-                      <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-gold/[0.03]" />
+                    <div className="relative aspect-[3/4] bg-white rounded-2xl flex items-center justify-center p-10 md:p-16 overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-gold/[0.02]" />
                       <img
-                        className="relative z-10 w-full h-full object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.08)] transition-transform duration-700 group-hover:scale-[1.03]"
+                        className="relative z-10 w-full h-full object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-transform duration-700 group-hover:scale-[1.02]"
                         src={p.img}
                         alt={p.name}
                       />
@@ -591,49 +524,37 @@ export default function HomePage() {
                   </Link>
                 </motion.div>
 
-                {/* Text — Strong hierarchy */}
+                {/* Text */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 25 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: 0.2 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
                   className={`${i % 2 === 1 ? "md:order-1" : ""} flex flex-col justify-center`}
                 >
-                  {/* Type label */}
                   <span className="text-[9px] uppercase tracking-[0.3em] text-text-muted mb-3 block">
                     {p.type}
                   </span>
-
-                  {/* Product name — serif, medium */}
                   <h3 className="font-heading text-2xl md:text-3xl mb-3 leading-[1.15] text-text-primary font-medium">
                     {p.name}
                   </h3>
-
-                  {/* Description — sans, secondary color */}
                   <p className="text-text-secondary leading-relaxed mb-6 max-w-sm text-sm md:text-base">
                     {p.benefit}
                   </p>
-
-                  {/* PRICE — visually dominant */}
                   <div className="mb-8 flex items-baseline gap-1">
-                    <span className="font-sans text-xl md:text-2xl text-gold-dark font-medium">
-                      ₹
+                    <span className="font-sans text-sm text-text-muted font-medium">
+                      INR
                     </span>
-                    <span className="font-sans text-3xl md:text-4xl font-semibold text-text-primary">
+                    <span className="font-sans text-3xl md:text-4xl font-medium text-text-primary tracking-tight">
                       {p.price}
                     </span>
                   </div>
-
-                  {/* CTA */}
-                  <Link
-                    href="/shop"
-                    className="block w-full md:w-auto"
-                  >
+                  <Link href="/shop" className="block w-full md:w-auto">
                     <motion.button
                       whileTap={{ scale: 0.98 }}
-                      className="w-full md:w-auto h-12 px-8 bg-gradient-to-r from-gold to-gold-light text-charcoal rounded-xl text-[10px] uppercase tracking-[0.2em] font-semibold hover:scale-[1.02] transition-all duration-300 shadow-[0_10px_30px_rgba(214,185,140,0.2)]"
+                      className="w-full md:w-auto h-12 px-8 bg-text-primary text-cream rounded-full text-[10px] uppercase tracking-[0.2em] font-medium hover:bg-text-primary/85 transition-colors duration-500"
                     >
-                      Customize
+                      Add to Ritual
                     </motion.button>
                   </Link>
                 </motion.div>
@@ -643,11 +564,11 @@ export default function HomePage() {
         ))}
 
         {/* Mobile: View all */}
-        <div className="px-6 pb-16 md:hidden">
+        <div className="px-6 pb-20 md:hidden">
           <Link href="/shop" className="block">
             <motion.button
               whileTap={{ scale: 0.98 }}
-              className="w-full h-14 border border-text-primary/10 rounded-xl text-[10px] uppercase tracking-[0.2em] text-text-primary hover:border-gold-dark hover:text-gold-dark transition-all duration-300"
+              className="w-full h-14 border border-text-primary/10 rounded-full text-[10px] uppercase tracking-[0.2em] text-text-primary hover:border-text-primary/25 transition-all duration-300"
             >
               View Entire Collection
             </motion.button>
@@ -655,10 +576,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 6. INGREDIENT STORY — Fixed Contrast ═══ */}
-      <section className="py-20 md:py-36 bg-cream relative overflow-hidden">
-        {/* Warm ambient glow */}
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gold/[0.04] rounded-full blur-[150px] pointer-events-none" />
+      {/* ═══ 6. INGREDIENT STORY — Warm & Botanical ═══ */}
+      <section className="py-24 md:py-40 bg-cream relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gold/[0.03] rounded-full blur-[150px] pointer-events-none" />
 
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
           <motion.div
@@ -668,10 +588,9 @@ export default function HomePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16 md:mb-24"
           >
-            <span className="text-[9px] uppercase tracking-[0.5em] text-gold-dark/50 mb-4 block">
+            <span className="text-[9px] uppercase tracking-[0.5em] text-text-muted mb-4 block">
               Botanical Intelligence
             </span>
-            {/* Heading — high contrast black, not washed out */}
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6 text-text-primary leading-[1.1]">
               Only what your skin
               <br />
@@ -683,30 +602,31 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 md:gap-0 max-w-3xl mx-auto">
             {ingredients.map((ing, i) => (
               <motion.div
                 key={ing.name}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: 0.7,
-                  delay: i * 0.12,
-                  ease: "easeOut",
+                  duration: 0.8,
+                  delay: i * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
                 }}
-                className="group text-center p-8 md:p-10"
+                className={`text-center py-10 md:py-0 md:px-8 ${
+                  i !== ingredients.length - 1
+                    ? "border-b md:border-b-0 md:border-r border-text-primary/[0.06]"
+                    : ""
+                }`}
               >
-                <div className="w-28 h-28 mx-auto mb-8 rounded-full bg-gradient-to-br from-gold/10 to-gold-light/10 flex items-center justify-center shadow-[0_20px_60px_rgba(214,185,140,0.1)] group-hover:shadow-[0_20px_60px_rgba(214,185,140,0.2)] transition-shadow duration-700">
-                  <div
-                    className="w-16 h-16 rounded-full bg-gradient-to-br from-gold/20 to-gold-light/20 animate-float-slow"
-                    style={{ animationDelay: `${i * 0.5}s` }}
-                  />
+                <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-gold/[0.06] flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-gold/[0.15]" />
                 </div>
-                <h3 className="font-heading text-2xl mb-2 text-text-primary">
+                <h3 className="font-heading text-xl mb-1.5 text-text-primary">
                   {ing.name}
                 </h3>
-                <p className="text-[10px] uppercase tracking-[0.2em] text-gold-dark/60 mb-3">
+                <p className="text-[9px] uppercase tracking-[0.2em] text-text-muted mb-2">
                   {ing.origin}
                 </p>
                 <p className="text-sm text-text-secondary">{ing.benefit}</p>
@@ -716,18 +636,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 7. RESULTS / PROOF ═══ */}
-      <section className="py-24 md:py-40 bg-cream-dark relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/[0.02] to-transparent" />
+      {/* ═══ 7. RESULTS / PROOF — Clean Numbers ═══ */}
+      <section className="py-28 md:py-44 bg-cream-dark relative">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16 md:mb-24"
+            className="text-center mb-20 md:mb-28"
           >
-            <span className="text-[9px] uppercase tracking-[0.5em] text-gold-dark/50 mb-4 block">
+            <span className="text-[9px] uppercase tracking-[0.5em] text-text-muted mb-4 block">
               Clinical Evidence
             </span>
             <h2 className="font-heading text-4xl md:text-5xl leading-[1.05] text-text-primary">
@@ -740,7 +659,7 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 gap-14 md:grid-cols-3 md:gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-8 max-w-4xl mx-auto">
             {stats.map((s, i) => (
               <AnimatedStat
                 key={s.label}
@@ -753,32 +672,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 8. BRAND PHILOSOPHY — Dark, Emotional ═══ */}
-      <section className="py-24 md:py-40 bg-charcoal relative overflow-hidden">
+      {/* ═══ 8. BRAND PHILOSOPHY — Warm, Editorial ═══ */}
+      <section className="py-28 md:py-44 bg-cream relative overflow-hidden">
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gold/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
         <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-          {/* Headline */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="mb-16 md:mb-24"
           >
-            <h2 className="font-heading text-[2.5rem] leading-[1.05] md:text-5xl lg:text-6xl text-white max-w-md">
+            <h2 className="font-heading text-[2.5rem] leading-[1.05] md:text-5xl lg:text-6xl text-text-primary max-w-lg">
               Nature&apos;s blueprint.{" "}
-              <span className="italic text-gradient-gold">
+              <span className="italic text-gold-dark">
                 AI&apos;s precision.
               </span>
             </h2>
-            <p className="text-white/40 mt-6 leading-relaxed max-w-sm text-base">
+            <p className="text-text-secondary mt-6 leading-relaxed max-w-sm text-base">
               We believe luxury is no longer about the rarest ingredients —
               it&apos;s about the perfect alignment.
             </p>
           </motion.div>
 
-          {/* Values — spaced list */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -803,12 +720,12 @@ export default function HomePage() {
               <motion.div
                 key={item.title}
                 variants={fadeUp}
-                className="border-b border-white/[0.06] py-8 md:py-10"
+                className="border-b border-text-primary/[0.06] py-8 md:py-10"
               >
-                <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold-light mb-3">
+                <h4 className="text-[10px] uppercase tracking-[0.3em] text-gold-dark mb-3">
                   {item.title}
                 </h4>
-                <p className="text-sm text-white/50 leading-relaxed max-w-md">
+                <p className="text-sm text-text-secondary leading-relaxed max-w-md">
                   {item.desc}
                 </p>
               </motion.div>
@@ -817,39 +734,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ 9. FINAL CTA — Full Impact ═══ */}
-      <section className="relative py-32 md:py-48 overflow-hidden">
-        {/* Animated silk background */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-charcoal via-charcoal-light to-charcoal animate-silk" />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-transparent to-charcoal/80" />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/[0.02] to-transparent animate-gradient" />
-        </div>
+      {/* ═══ 9. FINAL CTA — Warm, Elegant ═══ */}
+      <section className="relative py-32 md:py-48 overflow-hidden bg-cream-dark">
+        <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-gold/[0.05] rounded-full blur-[200px] pointer-events-none" />
+        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-gold-light/[0.04] rounded-full blur-[180px] pointer-events-none" />
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-12 text-center"
         >
-          <span className="text-[9px] uppercase tracking-[0.5em] text-gold-light/30 mb-8 block">
+          <span className="text-[9px] uppercase tracking-[0.5em] text-text-muted mb-8 block">
             Begin
           </span>
-          <h2 className="font-heading text-[2.8rem] leading-[1] md:text-6xl lg:text-7xl xl:text-8xl text-white mb-5">
+          <h2 className="font-heading text-[2.8rem] leading-[1.05] md:text-6xl lg:text-7xl xl:text-8xl text-text-primary mb-6">
             Your skin
             <br />
             deserves
             <br />
-            <span className="italic text-gradient-gold">intelligence.</span>
+            <span className="italic text-gold-dark">intelligence.</span>
           </h2>
-          <p className="text-white/40 mb-12 text-sm md:text-base max-w-xs mx-auto leading-relaxed">
+          <p className="text-text-secondary mb-14 text-base max-w-xs mx-auto leading-relaxed">
             Discover the ritual that evolves with you.
           </p>
-          <Link href="/quiz" className="block max-w-sm mx-auto">
+          <Link href="/quiz" className="inline-block">
             <motion.button
               whileTap={{ scale: 0.98 }}
-              className="btn-gold-glow animate-glow-pulse w-full h-14 bg-gradient-to-r from-gold to-gold-light text-charcoal rounded-xl uppercase tracking-[0.25em] text-[11px] font-semibold hover:scale-[1.02] transition-transform duration-500"
+              className="h-14 px-12 bg-text-primary text-cream rounded-full uppercase tracking-[0.25em] text-[11px] font-medium hover:bg-text-primary/85 transition-colors duration-500"
             >
               Start Your Journey
             </motion.button>
